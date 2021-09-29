@@ -1,19 +1,19 @@
-export const notes = [
+export let notes = [
 {
     id: Date.now(),
-    text: 'I wanna go to shop'
+    value: 'I wanna go to shop'
 },
 {
     id: Date.now()+1,
-    text: 'I wanna go to cinema'
+    value: 'I wanna go to cinema'
 },
 {
     id: Date.now()+2,
-    text: 'I wanna go to supermarket'
+    value: 'I wanna go to supermarket'
 },
 {
     id: Date.now()+3,
-    text: 'I wanna go to supermarketI wanna go to supermarketI wanna go to supermarketI wanna go to supermarket'
+    value: 'I wanna go to Disneyland and see Donald Duck'
 },
 ]
 
@@ -36,7 +36,7 @@ export const tags = [
 },
 {
     id: Date.now()+4,
-    text: 'address'
+    text: 'home'
 },
 {
     id: Date.now()+5,
@@ -63,15 +63,11 @@ export function getTags() {
     return tags;
 }
 
-// export function setData(value) {
-//     data.push(value);
-// }
+// 
 
 // export function editData(id, value) {
 //     data = data.map(item => item.id === id ? value : item)
 // }
 
-// export function deleteData(id) {
-//     data = data.filter(item=>item.id !== id)
-// }
+
 
