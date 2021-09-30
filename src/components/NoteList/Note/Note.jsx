@@ -3,7 +3,7 @@ import Context from "../../../context";
 import "./Note.scss";
 
 const Note = ({ note, setModalActive, setModalValue }) => {
-  const { deleteNotes } = useContext(Context);
+  const { deleteNote } = useContext(Context);
 
   return (
     <div className="note-wrap">
@@ -19,7 +19,7 @@ const Note = ({ note, setModalActive, setModalValue }) => {
       <div
         className="delete-btn"
         onClick={() => {
-          deleteNotes(note.id);
+          deleteNote(note.id);
         }}
       >
         <button>+</button>

@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./CurrentNote.scss";
 
-const CurrentNote = ({ modalValue, setModalActive, updateNote }) => {
+const CurrentNote = ({
+  modalValue,
+  setModalActive,
+  updateNote,
+  createNote,
+}) => {
   const [currentNote, setCurrentNote] = useState(modalValue);
   const textareaRef = useRef();
 
@@ -11,13 +16,23 @@ const CurrentNote = ({ modalValue, setModalActive, updateNote }) => {
     setCurrentNote(modalValue);
   }, [modalValue]);
 
+  const saveNote = () => {
+    setModalActive(false);
+
+    if (currentNote.id) {
+      updateNote(currentNote);
+    } else {
+      createNote({ ...currentNote, id: Date.now() });
+    }
+  };
+
   return (
     <div className="current-note-wrap">
       <div className="exit-btn">
         <button
           onClick={() => {
             setModalActive(false);
-            setCurrentNote(modalValue?.value);
+            setCurrentNote(modalValue);
           }}
         >
           +
@@ -27,6 +42,7 @@ const CurrentNote = ({ modalValue, setModalActive, updateNote }) => {
         <textarea
           ref={textareaRef}
           className="content"
+          placeholder="New note..."
           value={currentNote?.value}
           onChange={(e) =>
             setCurrentNote({ ...currentNote, value: e.target.value })
@@ -37,12 +53,7 @@ const CurrentNote = ({ modalValue, setModalActive, updateNote }) => {
         <div className="tags">#Текущие #теги</div>
       </div>
       <div className="save-btn">
-        <button
-          onClick={() => {
-            setModalActive(false);
-            updateNote(currentNote);
-          }}
-        >
+        <button disabled={!currentNote?.value} onClick={saveNote}>
           save
         </button>
       </div>
@@ -50,3 +61,5 @@ const CurrentNote = ({ modalValue, setModalActive, updateNote }) => {
   );
 };
 export default CurrentNote;
+
+//TODO disabled save button
