@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const Tag = ({tag})=>{
-    return <li>{`#${tag.text}`}</li>
-}
+const Tag = ({ tag }) => {
+  return <li>{`#${tag}`}</li>;
+};
 
-export default Tag
+export default Tag;

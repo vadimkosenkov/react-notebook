@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
+import CurrentTag from "../../TagList/CurrentTag/CurrentTag";
 import "./CurrentNote.scss";
 
 const CurrentNote = ({
   modalValue,
-  setModalActive,
+  tagsState,
   updateNote,
   createNote,
+  setModalActive,
+  setTagsState,
 }) => {
-  const [currentNote, setCurrentNote] = useState(modalValue);
+  const [currentNote, setCurrentNote] = useState({ ...modalValue });
+  const [currentTag, setCurrentTag] = useState([]);
   const textareaRef = useRef();
 
   useEffect(() => textareaRef.current.focus());
@@ -16,14 +20,30 @@ const CurrentNote = ({
     setCurrentNote(modalValue);
   }, [modalValue]);
 
+  useEffect(() => {
+    checkTags();
+  }, [currentNote]);
+
   const saveNote = () => {
     setModalActive(false);
-
     if (currentNote.id) {
       updateNote(currentNote);
     } else {
       createNote({ ...currentNote, id: Date.now() });
     }
+  };
+
+  const checkTags = () => {
+    const noteArr = currentNote?.value?.split(" ");
+    const resultTags = [];
+    for (let i = 0; i < noteArr?.length; i++) {
+      for (let j = 0; j < tagsState?.length; j++) {
+        if (noteArr[i] === tagsState[j]) {
+          resultTags.push(noteArr[i]);
+        }
+      }
+    }
+    setCurrentTag(resultTags);
   };
 
   return (
@@ -33,6 +53,7 @@ const CurrentNote = ({
           onClick={() => {
             setModalActive(false);
             setCurrentNote(modalValue);
+            setCurrentTag([]);
           }}
         >
           +
@@ -49,9 +70,7 @@ const CurrentNote = ({
           }
         />
       </div>
-      <div className="tags-wrap">
-        <div className="tags">#Текущие #теги</div>
-      </div>
+      <CurrentTag currentTag={currentTag} />
       <div className="save-btn">
         <button disabled={!currentNote?.value} onClick={saveNote}>
           save
@@ -62,4 +81,4 @@ const CurrentNote = ({
 };
 export default CurrentNote;
 
-//TODO disabled save button
+//TODO move styles to the required components

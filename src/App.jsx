@@ -11,6 +11,7 @@ function App() {
   const [modalActive, setModalActive] = useState();
   const [modalValue, setModalValue] = useState();
   const [notesState, setNotesState] = useState([...notes]);
+  const [tagsState, setTagsState] = useState([...tags]);
 
   const deleteNote = (id) => {
     setNotesState(notesState.filter((item) => item.id !== id));
@@ -42,7 +43,7 @@ function App() {
               <div className="title">Tag list</div>
               <div className="tag-list">
                 <ul>
-                  <TagList tags={tags} />
+                  <TagList tags={tagsState} />
                 </ul>
               </div>
             </div>
@@ -56,11 +57,13 @@ function App() {
                 />
                 <Modal modalActive={modalActive}>
                   <CurrentNote
+                    modalValue={{ ...modalValue }}
+                    createNote={createNote}
+                    updateNote={updateNote}
+                    tagsState={tagsState}
                     setModalActive={setModalActive}
                     setModalValue={setModalValue}
-                    updateNote={updateNote}
-                    createNote={createNote}
-                    modalValue={modalValue}
+                    setTagsState={setTagsState}
                   />
                 </Modal>
                 <div className="add-wrap">
