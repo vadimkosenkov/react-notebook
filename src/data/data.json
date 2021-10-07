@@ -1,0 +1,36 @@
+{
+  "notes": [
+    {
+      "id": 10,
+      "value": "I wanna go to shop"
+    },
+    {
+      "id": 20,
+      "value": "I wanna go to cinema"
+    },
+    {
+      "id": 30,
+      "value": "I wanna go to supermarket"
+    },
+    {
+      "id": 40,
+      "value": "I wanna go to Disneyland and see Donald Duck"
+    }
+  ],
+  "tags": [
+    "I",
+    "to",
+    "shop",
+    "change",
+    "desert",
+    "address",
+    "home",
+    "old",
+    "task",
+    "dog",
+    "cinema",
+    "supermarket",
+    "Disneyland",
+    "ILikeBearAndBeerAndPearAndTopGear"
+  ]
+}

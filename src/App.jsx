@@ -5,13 +5,13 @@ import CurrentNote from "./components/NoteList/CurrentNote/CurrentNote.jsx";
 import NoteList from "./components/NoteList/NoteList.jsx";
 import TagList from "./components/TagList/TagList.jsx";
 import Context from "./context.js";
-import { notes, tags } from "./data/data.js";
+import data from "./data/data.json";
 
 function App() {
   const [modalActive, setModalActive] = useState();
   const [modalValue, setModalValue] = useState();
-  const [notesState, setNotesState] = useState([...notes]);
-  const [tagsState, setTagsState] = useState([...tags]);
+  const [notesState, setNotesState] = useState([...data.notes]);
+  const [tagsState, setTagsState] = useState([...data.tags]);
 
   const deleteNote = (id) => {
     setNotesState(notesState.filter((item) => item.id !== id));
@@ -81,3 +81,8 @@ function App() {
 }
 
 export default App;
+
+//TODO move styles to the required components
+//TODO noteContent toLowerCase for tagsList
+//TODO clear unused props
+//TODO add focus in contentEditable component
