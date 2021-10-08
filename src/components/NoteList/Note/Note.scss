@@ -3,119 +3,67 @@ $color-2: #253a35;
 $color-3: #096d65;
 $color-5: #2f8b98;
 $color-4: #ebe3e0;
-$color-6: #e1e3e4;;
+$color-6: #e1e3e4;
 $color-7: #fff;
 $br: 5px;
 
-.note-wrap{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    margin-bottom: 10px;
+.note-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 10px;
 
-    .note{
-        line-height: 40px;
-        width: 100%;
-        min-height: 40px;
-        background-color: $color-4;
-        color: $color-1;
-        border-radius: $br;
-        font-size: 12px;
-        font-weight: 700;
-        padding: 0 10px;
-        transition: 0.2s;
-        box-shadow: 0px 1px 2px -1px $color-2;
-        cursor: pointer;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis; 
-        
-            &:hover{
-            transform: scale(0.99);
-            opacity: 0.8;
-            }
-        }
-.delete-btn{
+  .note {
+    line-height: 40px;
+    width: 100%;
+    min-height: 40px;
+    background-color: $color-4;
+    color: $color-1;
+    border-radius: $br;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0 10px;
+    transition: 0.2s;
+    box-shadow: 0px 1px 2px -1px $color-2;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      transform: scale(0.99);
+      opacity: 0.8;
+    }
+  }
+  .delete-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left:10px;
-    margin-right:10px;
+    margin-left: 10px;
+    margin-right: 10px;
 
-    button{
-        width: 30px;
-        height: 30px;
-        background-color: $color-1;
-        color: $color-4;
-        font-size: 59px;
-        font-weight: 700;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0px 0px 3px 0px $color-2;
-        cursor: pointer;
-        transition: 0.4s;
-        outline: none;
-        border: none;
-        transform: rotate(45deg);
-        &:hover{
-            transform: rotate(135deg); 
-            opacity: 0.9;
-          }
+    button {
+      width: 30px;
+      height: 30px;
+      background-color: $color-1;
+      color: $color-4;
+      font-size: 59px;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 0px 3px 0px $color-2;
+      cursor: pointer;
+      transition: 0.4s;
+      outline: none;
+      border: none;
+      transform: rotate(45deg);
+      &:hover {
+        transform: rotate(135deg);
+        opacity: 0.9;
+      }
     }
-
+  }
 }
-}
-
-// @media (max-width:540px) {
-//     .note-wrap{
-//       .note{
-//         width: 85%;
-//       }
-//     }
-//   } 
-// @media (max-width:414px) {
-//     .note-wrap{
-//       .note{
-//         width: 81%;
-//       }
-//     }
-//   } 
-// @media (max-width:411px) {
-//     .note-wrap{
-//       .note{
-//         width: 81%;
-//       }
-//     }
-//   } 
-//   @media (max-width:375px) {
-//       .note-wrap{
-//           .note{
-//               width: 79%;
-//             }
-//         }
-//     } 
-//   @media (max-width:360px) {
-//       .note-wrap{
-//           .note{
-//               width: 78%;
-//             }
-//         }
-//     } 
-    
-//     @media (max-width:320px) {
-//         .note-wrap{
-//           .note{
-//             width: 74%;
-//           }
-//         }
-//       } 
-//       @media (max-width:280px) {
-//         .note-wrap{
-//           .note{
-//             width: 68%;
-//           }
-//         }
-//       } 

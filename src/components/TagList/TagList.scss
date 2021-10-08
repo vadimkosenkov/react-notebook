@@ -1,0 +1,33 @@
+$color-1: #1f1e1c;
+$color-2: #253a35;
+$color-3: #096d65;
+$color-5: #2f8b98;
+$color-4: #ebe3e0;
+$color-6: #e1e3e4;
+$color-7: #fff;
+$br: 5px;
+
+.tag-list {
+  height: 96%;
+  overflow: auto;
+  ul {
+    height: 100%;
+    padding-top: 10px;
+    li {
+      cursor: pointer;
+      list-style: none;
+      font-size: 12px;
+      transition: 0.1s;
+      font-weight: 700;
+      line-height: 25px;
+      text-transform: lowercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      &:hover {
+        color: $color-5;
+        transform: scale(0.98);
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import "./CurrentTag.scss";
 
 const CurrentTag = ({ currentTag }) => {
   return (

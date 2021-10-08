@@ -1,19 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import ContentEditable from "react-contenteditable";
+import "./NoteContent.scss";
 
 const NoteContent = ({ currentNote, setCurrentNote }) => {
-  //   const divRef = useRef();
-  //   useEffect(() => {
-  //     if (currentNote?.id && text.current) {
-  //       divRef.current.focus();
-  //     }
-  //   });
-
   const text = useRef("");
-  text.current = currentNote?.value1 || "";
+  text.current = currentNote?.value1 || " ";
 
   const handleChange = (e) => {
     setCurrentNote({ ...currentNote, value: e.currentTarget.innerText });
+    console.log(1);
   };
 
   return (
@@ -22,7 +17,6 @@ const NoteContent = ({ currentNote, setCurrentNote }) => {
         className="content"
         html={text.current}
         onChange={handleChange}
-        // innerRef={divRef}
       />
     </div>
   );

@@ -13,10 +13,11 @@ const CurrentNote = ({
 }) => {
   const [currentNote, setCurrentNote] = useState({ ...modalValue });
   const [currentTag, setCurrentTag] = useState([]);
+
   const regExp = new RegExp(" |&nbsp;");
 
   useEffect(() => {
-    setCurrentNote(modalValue);
+    setCurrentNote({ ...modalValue });
   }, [modalValue]);
 
   useEffect(() => {
@@ -75,7 +76,7 @@ const CurrentNote = ({
         <button
           onClick={() => {
             setModalActive(false);
-            setCurrentNote(modalValue);
+            setCurrentNote({ ...currentNote, value: currentNote.value1 });
             setCurrentTag([]);
           }}
         >

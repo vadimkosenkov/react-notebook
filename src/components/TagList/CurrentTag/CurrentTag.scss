@@ -1,0 +1,22 @@
+$color-1: #1f1e1c;
+$color-2: #253a35;
+$color-3: #096d65;
+$color-5: #2f8b98;
+$color-4: #ebe3e0;
+$color-6: #e1e3e4;
+$color-7: #fff;
+$br: 5px;
+
+.tags-wrap {
+  height: 24%;
+  overflow: auto;
+  padding-top: 10px;
+
+  .tags {
+    text-transform: lowercase;
+    font-weight: 700;
+    color: $color-5;
+    margin-right: 10px;
+    line-height: 26px;
+  }
+}

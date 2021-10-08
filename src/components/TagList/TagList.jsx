@@ -1,16 +1,16 @@
 import React from "react";
-import Tag from "./Tag/Tag";
+import "./TagList.scss";
 
-const NoteList = ({ tags }) => {
+const TagList = ({ tags }) => {
   return (
     <div className="tag-list">
       <ul>
         {tags.map((tag) => {
-          return <Tag key={tag} tag={tag} />;
+          return <li key={tag}>{`#${tag}`}</li>;
         })}
       </ul>
     </div>
   );
 };
 
-export default NoteList;
+export default TagList;

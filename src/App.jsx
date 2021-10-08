@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./App.scss";
 import Modal from "./components/Modal/Modal.jsx";
 import CurrentNote from "./components/NoteList/CurrentNote/CurrentNote.jsx";
 
@@ -62,7 +63,6 @@ function App() {
                     updateNote={updateNote}
                     tagsState={tagsState}
                     setModalActive={setModalActive}
-                    setModalValue={setModalValue}
                     setTagsState={setTagsState}
                   />
                 </Modal>
@@ -81,8 +81,3 @@ function App() {
 }
 
 export default App;
-
-//TODO move styles to the required components
-//TODO noteContent toLowerCase for tagsList
-//TODO clear unused props
-//TODO add focus in contentEditable component
