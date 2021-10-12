@@ -1,23 +1,48 @@
-import React, { useRef } from "react";
-import ContentEditable from "react-contenteditable";
+import React, { useEffect, useState } from "react";
 import "./NoteContent.scss";
 
-const NoteContent = ({ currentNote, setCurrentNote }) => {
-  const text = useRef("");
-  text.current = currentNote?.value1 || " ";
+const NoteContent = ({
+  currentNote,
+  setSaveContent,
+  checkDisabledSave,
+  setCheckDisabledSave,
+}) => {
+  const [current, setCurrent] = useState({});
+
+  useEffect(() => {
+    setCurrent({ ...currentNote });
+  }, [currentNote]);
+
+  const handleFocus = (e) => {
+    setCurrent({ ...currentNote, value1: e.target.innerText });
+  };
 
   const handleChange = (e) => {
-    setCurrentNote({ ...currentNote, value: e.currentTarget.innerText });
-    console.log(1);
+    setSaveContent({ ...currentNote, value: e.currentTarget.innerText });
+    setCheckDisabledSave(false);
+  };
+
+  const tmpHTML = () => {
+    if (currentNote?.value1 !== current?.value1) {
+      return current?.value1;
+    } else {
+      return currentNote?.value1;
+    }
+  };
+
+  const createHTML = () => {
+    return { __html: tmpHTML() };
   };
 
   return (
     <div className="content-wrap">
-      <ContentEditable
+      <div
         className="content"
-        html={text.current}
-        onChange={handleChange}
-      />
+        contentEditable="true"
+        onInput={handleChange}
+        onFocus={handleFocus}
+        dangerouslySetInnerHTML={createHTML()}
+      ></div>
     </div>
   );
 };

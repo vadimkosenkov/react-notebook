@@ -13,28 +13,28 @@ const CurrentNote = ({
 }) => {
   const [currentNote, setCurrentNote] = useState({ ...modalValue });
   const [currentTag, setCurrentTag] = useState([]);
+  const [saveContent, setSaveContent] = useState({ ...currentNote });
+  const [checkDisabledSave, setCheckDisabledSave] = useState(true);
 
   const regExp = new RegExp(" |&nbsp;");
 
   useEffect(() => {
     setCurrentNote({ ...modalValue });
-  }, [modalValue]);
+  }, [modalValue.value]);
 
   useEffect(() => {
     checkTags();
   }, [currentNote.value]);
 
   const reCheckTags = () => {
-    const matches = currentNote?.value?.match(/#\w+/g) || [];
+    const matches = saveContent?.value?.match(/#\w+/g) || [];
     setTagsState([...tagsState, ...matches.map((e) => e.slice(1))]);
   };
 
   const saveNote = () => {
-    setModalActive(false);
-
     const editNote = {
-      ...currentNote,
-      value: currentNote.value
+      ...saveContent,
+      value: saveContent.value
         .split(" ")
         .map((e) => (e[0] === "#" ? e.slice(1) : e))
         .join(" "),
@@ -49,6 +49,7 @@ const CurrentNote = ({
   };
 
   const checkTags = () => {
+    setCurrentNote({ ...currentNote, value: saveContent.value });
     const noteArr = currentNote?.value?.split(regExp);
 
     const resultTags = [];
@@ -76,6 +77,7 @@ const CurrentNote = ({
         <button
           onClick={() => {
             setModalActive(false);
+            setCheckDisabledSave(true);
             setCurrentNote({ ...currentNote, value: currentNote.value1 });
             setCurrentTag([]);
           }}
@@ -83,10 +85,23 @@ const CurrentNote = ({
           +
         </button>
       </div>
-      <NoteContent currentNote={currentNote} setCurrentNote={setCurrentNote} />
+      <NoteContent
+        currentNote={currentNote}
+        setCurrentNote={setCurrentNote}
+        setSaveContent={setSaveContent}
+        setCheckDisabledSave={setCheckDisabledSave}
+        checkDisabledSave={checkDisabledSave}
+      />
       <CurrentTag currentTag={currentTag} />
       <div className="save-btn">
-        <button disabled={!currentNote?.value} onClick={saveNote}>
+        <button
+          disabled={checkDisabledSave}
+          onClick={() => {
+            setModalActive(false);
+            setCheckDisabledSave(true);
+            saveNote();
+          }}
+        >
           save
         </button>
       </div>
