@@ -78,8 +78,12 @@ const CurrentNote = ({
           onClick={() => {
             setModalActive(false);
             setCheckDisabledSave(true);
-            setCurrentNote({ ...currentNote, value: currentNote.value1 });
             setCurrentTag([]);
+            if (currentNote.id) {
+              setCurrentNote({ ...currentNote, value: currentNote.value1 });
+            } else {
+              setCurrentNote({});
+            }
           }}
         >
           +
@@ -90,7 +94,6 @@ const CurrentNote = ({
         setCurrentNote={setCurrentNote}
         setSaveContent={setSaveContent}
         setCheckDisabledSave={setCheckDisabledSave}
-        checkDisabledSave={checkDisabledSave}
       />
       <CurrentTag currentTag={currentTag} />
       <div className="save-btn">

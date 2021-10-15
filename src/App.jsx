@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Modal from "./components/Modal/Modal.jsx";
 import CurrentNote from "./components/NoteList/CurrentNote/CurrentNote.jsx";
@@ -13,15 +13,39 @@ function App() {
   const [modalValue, setModalValue] = useState();
   const [notesState, setNotesState] = useState([...data.notes]);
   const [tagsState, setTagsState] = useState([...data.tags]);
+  const [filterNotes, setFilterNotes] = useState([...notesState]);
+  const [activeTag, setActiveTag] = useState({
+    value: "",
+    selected: false,
+  });
+
+  useEffect(() => {
+    if (!activeTag.selected) {
+      setFilterNotes([...notesState]);
+    } else {
+      setFilterNotes(
+        notesState.filter((item) => item.value.indexOf(activeTag.value) !== -1)
+      );
+    }
+  }, [activeTag]);
+
+  const toggleTag = (selectedTag) => {
+    setActiveTag({
+      value: selectedTag,
+      selected: selectedTag === activeTag.value ? !activeTag.selected : true,
+    });
+  };
 
   const deleteNote = (id) => {
     setNotesState(notesState.filter((item) => item.id !== id));
+    setActiveTag({ ...activeTag, selected: true });
   };
 
   const updateNote = (note) => {
     setNotesState(
       notesState.map((item) => (item.id === note.id ? note : item))
     );
+    setActiveTag({ ...activeTag, selected: true });
   };
 
   const addNote = () => {
@@ -32,6 +56,7 @@ function App() {
 
   const createNote = (note) => {
     setNotesState([...notesState, note]);
+    setActiveTag({ ...activeTag, selected: true });
   };
 
   return (
@@ -44,7 +69,11 @@ function App() {
               <div className="title">Tag list</div>
               <div className="tag-list">
                 <ul>
-                  <TagList tags={tagsState} />
+                  <TagList
+                    tags={tagsState}
+                    toggleTag={toggleTag}
+                    activeTag={activeTag}
+                  />
                 </ul>
               </div>
             </div>
@@ -52,7 +81,7 @@ function App() {
               <div className="title">Note list</div>
               <div className="note-list-container">
                 <NoteList
-                  notes={notesState}
+                  notes={filterNotes}
                   setModalActive={setModalActive}
                   setModalValue={setModalValue}
                 />

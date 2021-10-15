@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./NoteContent.scss";
 
-const NoteContent = ({
-  currentNote,
-  setSaveContent,
-  checkDisabledSave,
-  setCheckDisabledSave,
-}) => {
+const NoteContent = ({ currentNote, setSaveContent, setCheckDisabledSave }) => {
   const [current, setCurrent] = useState({});
-
   useEffect(() => {
     setCurrent({ ...currentNote });
   }, [currentNote]);

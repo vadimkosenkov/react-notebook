@@ -24,6 +24,9 @@ $br: 5px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      &[active="false"] {
+        color: $color-5;
+      }
       &:hover {
         color: $color-5;
         transform: scale(0.98);
